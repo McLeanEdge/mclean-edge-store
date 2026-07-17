@@ -26,22 +26,41 @@ const CATEGORIES = [
   ['Microphones', IconMic],
 ]
 
+const ROTATING_PRODUCTS = ['CAMERA', 'LENS', 'DRONE', 'GIMBAL', 'TRIPOD', 'SD CARD', 'MICROPHONE']
+
 export default function Home() {
   const { getAllProducts } = useStore()
   const featured = getAllProducts().slice(0, 8)
+  const [wordIndex, setWordIndex] = React.useState(0)
+
+  React.useEffect(() => {
+    const id = setInterval(() => {
+      setWordIndex((i) => (i + 1) % ROTATING_PRODUCTS.length)
+    }, 4000)
+    return () => clearInterval(id)
+  }, [])
 
   return (
     <>
       {/* HERO */}
       <section className="hero">
         <div className="wrap hero-grid">
-          <div className="hero-copy">
+          <div className="hero-heading">
             <span className="eyebrow">Available Nationwide</span>
             <h1 className="hero-title">
-              CAMERA
+              <span key={wordIndex} className="rotate-word">{ROTATING_PRODUCTS[wordIndex]}</span>
               <br />
               <span className="accent">SALES</span>
             </h1>
+          </div>
+          <div className="hero-visual">
+            <img src={heroCamera} alt="Canon mirrorless camera with 28-70mm lens" />
+            <div className="hero-readout">
+              F/2.0 &nbsp;·&nbsp; 1/8000 &nbsp;·&nbsp; ISO 400
+              <div>NEW ARRIVAL — IN STOCK NOW</div>
+            </div>
+          </div>
+          <div className="hero-rest">
             <p className="hero-sub">
               Professional cameras, lenses and film gear at affordable prices — shop our full
               inventory, or list your own equipment and sell straight to other creators.
@@ -54,13 +73,6 @@ export default function Home() {
               <div><b>15+</b><span>Products in stock</span></div>
               <div><b>10</b><span>Regions delivered to</span></div>
               <div><b>Free</b><span>SD card per camera</span></div>
-            </div>
-          </div>
-          <div className="hero-visual">
-            <img src={heroCamera} alt="Canon mirrorless camera with 28-70mm lens" />
-            <div className="hero-readout">
-              F/2.0 &nbsp;·&nbsp; 1/8000 &nbsp;·&nbsp; ISO 400
-              <div>NEW ARRIVAL — IN STOCK NOW</div>
             </div>
           </div>
         </div>
