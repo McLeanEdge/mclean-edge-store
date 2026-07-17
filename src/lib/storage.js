@@ -6,7 +6,7 @@
 
 export const LS_CART = 'mclean_cart_v1'
 export const LS_MARKET = 'mclean_marketplace_v1'
-export const STORE_WHATSAPP = '233241096942' // 0241096942 in international format
+export const STORE_WHATSAPP = '233561888656' // 0561888656 in international format
 
 // ---------- Cart ----------
 export function getCart() {
