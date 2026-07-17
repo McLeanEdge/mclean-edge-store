@@ -53,7 +53,7 @@ export default function Sell() {
       price: p,
       condition,
       description: desc.trim() || 'No further details provided by seller.',
-      image: uploadedImage || placeholderImg(t, Math.floor(Math.random() * 16)),
+      image: uploadedImage || placeholderImg(category, Math.floor(Math.random() * 16)),
       sellerName: name,
       sellerWhatsapp: wa,
       specs: { Condition: condition, Category: category, 'Listed by': name },

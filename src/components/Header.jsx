@@ -22,14 +22,6 @@ export default function Header() {
 
   return (
     <>
-      <div className="ticker">
-        <div className="ticker-track">
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((text, i) => (
-            <span key={i}>{text}</span>
-          ))}
-        </div>
-      </div>
-
       <header className="site-header">
         <div className="wrap header-row">
           <Link to="/" className="brand">
@@ -64,6 +56,14 @@ export default function Header() {
           </div>
         </div>
       </header>
+
+      <div className="ticker">
+        <div className="ticker-track">
+          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((text, i) => (
+            <span key={i}>{text}</span>
+          ))}
+        </div>
+      </div>
     </>
   )
 }
