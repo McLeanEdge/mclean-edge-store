@@ -207,3 +207,54 @@ export function IconUsers(props) {
     </Base>
   )
 }
+
+export function IconExternal(props) {
+  return (
+    <Base {...props}>
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </Base>
+  )
+}
+
+export function IconMonitor(props) {
+  return (
+    <Base {...props}>
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <line x1="8" y1="21" x2="16" y2="21" />
+      <line x1="12" y1="17" x2="12" y2="21" />
+    </Base>
+  )
+}
+
+export function IconSignal(props) {
+  return (
+    <Base {...props}>
+      <line x1="2" y1="20" x2="2" y2="14" />
+      <line x1="8" y1="20" x2="8" y2="10" />
+      <line x1="14" y1="20" x2="14" y2="6" />
+      <line x1="20" y1="20" x2="20" y2="2" />
+    </Base>
+  )
+}
+
+export function IconChartBar(props) {
+  return (
+    <Base {...props}>
+      <line x1="12" y1="20" x2="12" y2="10" />
+      <line x1="18" y1="20" x2="18" y2="4" />
+      <line x1="6" y1="20" x2="6" y2="16" />
+    </Base>
+  )
+}
+
+export function IconStore(props) {
+  return (
+    <Base {...props}>
+      <path d="M3 9l1.5-5.5A1 1 0 0 1 5.46 3h13.08a1 1 0 0 1 .96 1.5L21 9" />
+      <path d="M3 9h18v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z" />
+      <path d="M9 19v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5" />
+    </Base>
+  )
+}

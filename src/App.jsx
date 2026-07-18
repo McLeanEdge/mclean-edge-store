@@ -8,6 +8,7 @@ import Shop from './pages/Shop.jsx'
 import Product from './pages/Product.jsx'
 import Cart from './pages/Cart.jsx'
 import Sell from './pages/Sell.jsx'
+import Projects from './pages/Projects.jsx'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/sell" element={<Sell />} />
+          <Route path="/projects" element={<Projects />} />
         </Route>
       </Routes>
     </StoreProvider>

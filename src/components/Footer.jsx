@@ -47,6 +47,7 @@ export default function Footer() {
               <li><Link to="/sell">List your gear</Link></li>
               <li><Link to="/shop?tab=market">Browse community listings</Link></li>
               <li><Link to="/cart">Your cart</Link></li>
+              <li><Link to="/projects">Projects &amp; Apps</Link></li>
             </ul>
           </div>
 

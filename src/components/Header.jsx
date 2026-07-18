@@ -36,6 +36,7 @@ export default function Header() {
             <NavLink to="/" end onClick={() => setMenuOpen(false)}>Home</NavLink>
             <NavLink to="/shop" onClick={() => setMenuOpen(false)}>Shop</NavLink>
             <NavLink to="/sell" onClick={() => setMenuOpen(false)}>Sell With Us</NavLink>
+            <NavLink to="/projects" onClick={() => setMenuOpen(false)}>Projects / Apps</NavLink>
           </nav>
 
           <div className="header-actions">

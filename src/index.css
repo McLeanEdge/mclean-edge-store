@@ -567,6 +567,34 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .summary-row.total{ color:var(--cream); font-weight:800; font-size:17px; border-top:1px solid var(--line); margin-top:10px; padding-top:16px; }
 .summary-row.total b{ font-family:var(--font-mono); color:var(--lcd); }
 
+/* ============ Projects / Apps ecosystem ============ */
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.project-card{
+  display:flex; flex-direction:column;
+  background:var(--bg-card);
+  border:1px solid var(--line);
+  border-radius:var(--radius-m);
+  padding:26px;
+  transition:border-color .18s ease, transform .18s ease, background .18s ease;
+}
+.project-card:hover{ border-color:var(--orange); transform:translateY(-4px); background:#221b13; }
+.project-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.project-ext{ color:var(--muted-dim); transition:color .18s ease; }
+.project-card:hover .project-ext{ color:var(--orange); }
+.project-name{ font-family:var(--font-body); font-size:17px; font-weight:800; text-transform:none; margin-bottom:6px; }
+.project-tag{ font-family:var(--font-mono); font-size:11px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; }
+.project-desc{ color:var(--muted); font-size:13.5px; flex:1; margin-bottom:18px; }
+.project-cta{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;
+  color:var(--cream); align-self:flex-start;
+  padding-bottom:2px; border-bottom:2px solid var(--orange);
+}
+
 /* ============ Utility ============ */
 .mt-40{ margin-top:40px; }
 .text-center{ text-align:center; }
@@ -591,6 +619,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .sell-layout{ grid-template-columns:1fr; }
   .footer-grid{ grid-template-columns:1fr 1fr; }
   .promo-strip{ grid-template-columns:1fr; }
+  .project-grid{ grid-template-columns:1fr 1fr; }
 }
 @media (max-width: 860px){
   .main-nav{
@@ -628,6 +657,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .cat-grid{ grid-template-columns:repeat(3,1fr); gap:12px; }
   .prod-grid{ grid-template-columns:1fr 1fr; gap:14px; }
   .footer-grid{ grid-template-columns:1fr; }
+  .project-grid{ grid-template-columns:1fr; }
   .sell-banner{ flex-direction:column; align-items:flex-start; padding:32px 24px; }
   .field-row{ grid-template-columns:1fr; }
   .cart-table thead{ display:none; }
