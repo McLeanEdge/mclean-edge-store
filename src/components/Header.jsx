@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logoMark from '../assets/mc-logo.png'
 import { useStore } from '../lib/StoreContext.jsx'
 import { IconCart, IconMenu, IconClose } from './icons.jsx'
+import MegaMenu from './MegaMenu.jsx'
 
 const TICKER_ITEMS = [
   'Free SD Card With Every Camera Purchase',
@@ -20,11 +21,30 @@ export default function Header() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [menuOpen])
+
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <>
-      <header className="site-header">
+      <header className={`site-header${menuOpen ? ' menu-active' : ''}`}>
         <div className="wrap header-row">
-          <Link to="/" className="brand">
+          <button
+            className="menu-trigger"
+            aria-expanded={menuOpen}
+            aria-controls="megaMenu"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <IconClose size={18} strokeWidth={2} /> : <IconMenu size={18} strokeWidth={2} />}
+            <span>Menu</span>
+          </button>
+
+          <Link to="/" className="brand" onClick={closeMenu}>
             <img src={logoMark} alt="McLean Edge Studios logo" />
             <span className="brand-word">
               <b>McLean Edge</b>
@@ -32,30 +52,17 @@ export default function Header() {
             </span>
           </Link>
 
-          <nav className={`main-nav${menuOpen ? ' open' : ''}`} id="mainNav">
-            <NavLink to="/" end onClick={() => setMenuOpen(false)}>Home</NavLink>
-            <NavLink to="/shop" onClick={() => setMenuOpen(false)}>Shop</NavLink>
-            <NavLink to="/sell" onClick={() => setMenuOpen(false)}>Sell With Us</NavLink>
-            <NavLink to="/projects" onClick={() => setMenuOpen(false)}>Projects / Apps</NavLink>
-          </nav>
-
           <div className="header-actions">
-            <Link to="/cart" className="icon-btn" aria-label="View cart">
+            <Link to="/cart" className="icon-btn" aria-label="View cart" onClick={closeMenu}>
               <IconCart size={19} strokeWidth={2} />
               <span className="cart-count" style={{ display: cartCount > 0 ? 'flex' : 'none' }}>
                 {cartCount}
               </span>
             </Link>
-            <button
-              className="menu-toggle"
-              aria-label="Toggle menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
-            >
-              {menuOpen ? <IconClose size={18} strokeWidth={2} /> : <IconMenu size={18} strokeWidth={2} />}
-            </button>
           </div>
         </div>
+
+        <MegaMenu open={menuOpen} onClose={closeMenu} />
       </header>
 
       <div className="ticker">
