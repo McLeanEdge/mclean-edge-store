@@ -34,16 +34,6 @@ export default function Header() {
     <>
       <header className={`site-header${menuOpen ? ' menu-active' : ''}`}>
         <div className="wrap header-row">
-          <button
-            className="menu-trigger"
-            aria-expanded={menuOpen}
-            aria-controls="megaMenu"
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            {menuOpen ? <IconClose size={18} strokeWidth={2} /> : <IconMenu size={18} strokeWidth={2} />}
-            <span>Menu</span>
-          </button>
-
           <Link to="/" className="brand" onClick={closeMenu}>
             <img src={logoMark} alt="McLean Edge Studios logo" />
             <span className="brand-word">
@@ -59,6 +49,15 @@ export default function Header() {
                 {cartCount}
               </span>
             </Link>
+            <button
+              className="menu-trigger"
+              aria-expanded={menuOpen}
+              aria-controls="megaMenu"
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              {menuOpen ? <IconClose size={18} strokeWidth={2} /> : <IconMenu size={18} strokeWidth={2} />}
+              <span>Menu</span>
+            </button>
           </div>
         </div>
 

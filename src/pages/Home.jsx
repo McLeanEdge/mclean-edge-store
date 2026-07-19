@@ -69,11 +69,6 @@ export default function Home() {
               <Link to="/shop" className="btn btn-primary">Shop Now</Link>
               <Link to="/sell" className="btn btn-ghost">Sell Your Gear</Link>
             </div>
-            <div className="hero-stats">
-              <div><b>15+</b><span>Products in stock</span></div>
-              <div><b>10</b><span>Regions delivered to</span></div>
-              <div><b>Free</b><span>SD card per camera</span></div>
-            </div>
           </div>
         </div>
       </section>
