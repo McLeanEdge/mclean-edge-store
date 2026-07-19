@@ -5,15 +5,6 @@
 // ============================================================
 export const PROJECTS = [
   {
-    id: 'pos',
-    name: 'McLean POS System',
-    tag: 'Retail & Inventory Management',
-    desc: 'Point-of-sale, stock tracking and sales reporting built for small retail teams.',
-    url: 'https://your-pos-app.vercel.app',
-    cta: 'Open App',
-    icon: 'pos',
-  },
-  {
     id: 'data',
     name: 'McData Bundles',
     tag: 'Buy & Resell MTN, Telecel & AirtelTigo Data',
@@ -22,9 +13,20 @@ export const PROJECTS = [
     cta: 'Open Website',
     icon: 'signal',
   },
+  
+  {
+    id: 'pos',
+    name: 'McLean POS System',
+    tag: 'Retail & Inventory Management',
+    desc: 'Point-of-sale, stock tracking and sales reporting built for small retail teams.',
+    url: 'https://your-pos-app.vercel.app',
+    cta: 'Open App',
+    icon: 'pos',
+  },
+  
   {
     id: 'florence',
-    name: 'Florence Live Dashboard',
+    name: 'Functional Live Dashboard',
     tag: 'Live Monitoring & Analytics',
     desc: 'Real-time dashboard for live monitoring, metrics and analytics.',
     url: 'https://your-florence-app.vercel.app',
@@ -40,13 +42,5 @@ export const PROJECTS = [
     cta: 'Open App',
     icon: 'users',
   },
-  {
-    id: 'demak',
-    name: 'Demak Fashion',
-    tag: 'Fashion & E-commerce',
-    desc: 'An online storefront for fashion pieces and accessories.',
-    url: 'https://your-demak-store.vercel.app',
-    cta: 'Visit Store',
-    icon: 'store',
-  },
+  
 ]
