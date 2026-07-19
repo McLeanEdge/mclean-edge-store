@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import heroCamera from '../assets/hero-camera-horizontal.png'
 import ProductCard from '../components/ProductCard.jsx'
 import { useStore } from '../lib/StoreContext.jsx'
+import { waLink } from '../lib/storage.js'
 import {
   IconCamera,
   IconAperture,
@@ -26,16 +27,16 @@ const CATEGORIES = [
   ['Microphones', IconMic],
 ]
 
-/* Each rotating headline word carries its own icon + readout —
-   the hero visual swaps to match whichever word is showing. */
+/* Each rotating headline word carries its own real background photo —
+   the hero swaps the photo to match whichever word is showing. */
 const ROTATING_PRODUCTS = [
-  { word: 'CAMERA', Icon: IconCamera, readout: 'F/2.0 · 1/8000 · ISO 400', tag: 'NEW ARRIVAL — IN STOCK NOW', photo: true },
-  { word: 'LENS', Icon: IconAperture, readout: '24–105mm · f/4L IS', tag: 'BEST SELLER — RF MOUNT', photo: true },
-  { word: 'DRONE', Icon: IconDrone, readout: '4K/60 · 3-AXIS GIMBAL', tag: 'IN STOCK — READY TO FLY' },
-  { word: 'GIMBAL', Icon: IconVideo, readout: 'PAYLOAD 3KG · WIRELESS', tag: 'SMOOTH TRACKING — 12H BATTERY' },
-  { word: 'TRIPOD', Icon: IconTripod, readout: 'CARBON FIBER · 1.6KG', tag: 'PRO SUPPORT — FIELD READY' },
-  { word: 'SD CARD', Icon: IconSdCard, readout: '256GB · UHS-II · 300MB/S', tag: 'HIGH SPEED — FREE WITH CAMERA' },
-  { word: 'MICROPHONE', Icon: IconMic, readout: 'SHOTGUN · -32DB · XLR', tag: 'STUDIO GRADE — LOW NOISE' },
+  { word: 'CAMERA', image: heroCamera, tag: 'NEW ARRIVAL — IN STOCK NOW' },
+  { word: 'LENS', image: heroCamera, tag: 'BEST SELLER — RF 24–105MM' },
+  { word: 'DRONE', image: 'https://images.unsplash.com/photo-1574220739173-975b13d0279a?w=1800&q=80&auto=format&fit=crop', tag: 'IN STOCK — READY TO FLY' },
+  { word: 'GIMBAL', image: 'https://images.unsplash.com/photo-1757877259265-99ab3e3193bf?w=1800&q=80&auto=format&fit=crop', tag: 'SMOOTH TRACKING — 12H BATTERY' },
+  { word: 'TRIPOD', image: 'https://images.unsplash.com/photo-1705107958681-c76fec2dc5b4?w=1800&q=80&auto=format&fit=crop', tag: 'PRO SUPPORT — FIELD READY' },
+  { word: 'SD CARD', image: 'https://images.unsplash.com/photo-1760376208569-e1b82e1ae494?w=1800&q=80&auto=format&fit=crop', tag: 'HIGH SPEED — FREE WITH CAMERA' },
+  { word: 'MICROPHONE', image: 'https://images.unsplash.com/photo-1558811916-51c8d56d29c6?w=1800&q=80&auto=format&fit=crop', tag: 'STUDIO GRADE — LOW NOISE' },
 ]
 
 export default function Home() {
@@ -54,51 +55,45 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="hero">
-        <div className="wrap hero-grid">
-          <div className="hero-heading">
+      <section className="hero-fb">
+        <div className="hero-fb-frame">
+          <div className="hero-fb-bg-stack">
+            <img
+              key={wordIndex}
+              src={current.image}
+              alt={`${current.word.toLowerCase()} in use`}
+              className="hero-fb-bg"
+            />
+          </div>
+          <div className="hero-fb-scrim" />
+          <div className="hero-fb-content">
             <span className="eyebrow">Available Nationwide</span>
-            <h1 className="hero-title">
+            <h1 className="hero-title-center">
               <span key={wordIndex} className="rotate-word">{current.word}</span>
               <br />
               <span className="accent">SALES</span>
             </h1>
-          </div>
-          <div className="hero-visual">
-            <div className="glass-holder">
-              <div className="glass-holder-inner">
-                {current.photo ? (
-                  <img
-                    key="photo"
-                    src={heroCamera}
-                    alt="Canon mirrorless camera with 24-105mm lens"
-                    className="glass-photo"
-                  />
-                ) : (
-                  <div key={current.word} className="glass-icon-stage">
-                    <current.Icon size={108} strokeWidth={1.1} />
-                  </div>
-                )}
-              </div>
-              <div className="glass-dots">
-                {ROTATING_PRODUCTS.map((p, i) => (
-                  <span key={p.word} className={i === wordIndex ? 'dot dot-active' : 'dot'} />
-                ))}
-              </div>
-            </div>
-            <div className="hero-readout">
-              {current.readout}
-              <div>{current.tag}</div>
-            </div>
-          </div>
-          <div className="hero-rest">
-            <p className="hero-sub">
+            <p className="hero-sub-center">
               Professional cameras, lenses and film gear at affordable prices — shop our full
               inventory, or list your own equipment and sell straight to other creators.
             </p>
-            <div className="hero-actions">
-              <Link to="/projects" className="btn btn-primary">APPS</Link>
-              <Link to="/sell" className="btn btn-ghost">Sell Your Gear</Link>
+            <div className="hero-actions-center">
+              <Link to="/shop" className="btn btn-primary">Shop Now</Link>
+              <Link to="/sell" className="btn btn-primary">Sell Your Gear</Link>
+              <a
+                href={waLink(`Hi McLean Edge Studios, I'd like to know more about your ${current.word.toLowerCase()} range.`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                Enquire Now
+              </a>
+            </div>
+            <div className="hero-fb-tag">{current.tag}</div>
+            <div className="glass-dots">
+              {ROTATING_PRODUCTS.map((p, i) => (
+                <span key={p.word} className={i === wordIndex ? 'dot dot-active' : 'dot'} />
+              ))}
             </div>
           </div>
         </div>
