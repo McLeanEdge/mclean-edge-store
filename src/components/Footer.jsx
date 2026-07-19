@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom'
 import logoMark from '../assets/mc-logo.png'
 import { waLink } from '../lib/storage.js'
 
+const SOCIAL_LINKS = {
+  facebook: 'https://www.facebook.com/mclean_edge',
+  instagram: 'https://www.instagram.com/mclean_edge',
+  x: 'https://x.com/mclean__edge',
+  tiktok: 'https://www.tiktok.com/@mclean_edge_studios',
+  youtube: 'https://www.youtube.com/@mclean_edge_studios',
+}
+
 export default function Footer() {
   return (
     <footer className="site-footer">
@@ -22,11 +30,11 @@ export default function Footer() {
               other creators.
             </p>
             <div className="social-row">
-              <a href="#" aria-label="Facebook">f</a>
-              <a href="#" aria-label="Instagram">◎</a>
-              <a href="#" aria-label="TikTok">♪</a>
-              <a href="#" aria-label="X">X</a>
-              <a href="#" aria-label="YouTube">▶</a>
+              <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+              <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a>
+              <a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok">♪</a>
+              <a href={SOCIAL_LINKS.x} target="_blank" rel="noopener noreferrer" aria-label="X">X</a>
+              <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
             </div>
           </div>
 
@@ -60,7 +68,7 @@ export default function Footer() {
                 </a>
               </li>
               <li><a href="#">www.mcleanedge.com</a></li>
-              <li><a href="#">@mclean_edge</a></li>
+              <li><a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer">@mclean_edge</a></li>
             </ul>
           </div>
         </div>
