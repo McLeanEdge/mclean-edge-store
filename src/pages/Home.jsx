@@ -66,7 +66,7 @@ export default function Home() {
               inventory, or list your own equipment and sell straight to other creators.
             </p>
             <div className="hero-actions">
-              <Link to="/shop" className="btn btn-primary">Shop Now</Link>
+              <Link to="/projects" className="btn btn-primary">APPS</Link>
               <Link to="/sell" className="btn btn-ghost">Sell Your Gear</Link>
             </div>
           </div>

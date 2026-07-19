@@ -17,13 +17,18 @@ export default function Footer() {
       <div className="wrap">
         <div className="footer-grid">
           <div className="footer-about">
-            <div className="brand">
+            <button
+              type="button"
+              className="brand brand-scroll-top"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              aria-label="Back to top"
+            >
               <img src={logoMark} alt="McLean Edge Studios logo" />
               <span className="brand-word">
                 <b>McLean Edge</b>
                 <span>STUDIOS</span>
               </span>
-            </div>
+            </button>
             <p>
               Professional cameras, lenses and film gear at affordable prices — available
               nationwide, plus a marketplace where you can sell your own equipment directly to

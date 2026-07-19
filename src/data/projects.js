@@ -18,7 +18,7 @@ export const PROJECTS = [
     name: 'McData Bundles',
     tag: 'Buy & Resell MTN, Telecel & AirtelTigo Data',
     desc: 'A self-service storefront for buying and reselling mobile data bundles.',
-    url: 'https://your-data-app.vercel.app',
+    url: 'https://mcdata-bundles.vercel.app/',
     cta: 'Open Website',
     icon: 'signal',
   },
