@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import heroCamera from '../assets/hero-camera.jpg'
+import heroCamera from '../assets/hero-camera-horizontal.png'
 import ProductCard from '../components/ProductCard.jsx'
 import { useStore } from '../lib/StoreContext.jsx'
 import {
@@ -26,12 +26,23 @@ const CATEGORIES = [
   ['Microphones', IconMic],
 ]
 
-const ROTATING_PRODUCTS = ['CAMERA', 'LENS', 'DRONE', 'GIMBAL', 'TRIPOD', 'SD CARD', 'MICROPHONE']
+/* Each rotating headline word carries its own icon + readout —
+   the hero visual swaps to match whichever word is showing. */
+const ROTATING_PRODUCTS = [
+  { word: 'CAMERA', Icon: IconCamera, readout: 'F/2.0 · 1/8000 · ISO 400', tag: 'NEW ARRIVAL — IN STOCK NOW', photo: true },
+  { word: 'LENS', Icon: IconAperture, readout: '24–105mm · f/4L IS', tag: 'BEST SELLER — RF MOUNT', photo: true },
+  { word: 'DRONE', Icon: IconDrone, readout: '4K/60 · 3-AXIS GIMBAL', tag: 'IN STOCK — READY TO FLY' },
+  { word: 'GIMBAL', Icon: IconVideo, readout: 'PAYLOAD 3KG · WIRELESS', tag: 'SMOOTH TRACKING — 12H BATTERY' },
+  { word: 'TRIPOD', Icon: IconTripod, readout: 'CARBON FIBER · 1.6KG', tag: 'PRO SUPPORT — FIELD READY' },
+  { word: 'SD CARD', Icon: IconSdCard, readout: '256GB · UHS-II · 300MB/S', tag: 'HIGH SPEED — FREE WITH CAMERA' },
+  { word: 'MICROPHONE', Icon: IconMic, readout: 'SHOTGUN · -32DB · XLR', tag: 'STUDIO GRADE — LOW NOISE' },
+]
 
 export default function Home() {
   const { getAllProducts } = useStore()
   const featured = getAllProducts().slice(0, 8)
   const [wordIndex, setWordIndex] = React.useState(0)
+  const current = ROTATING_PRODUCTS[wordIndex]
 
   React.useEffect(() => {
     const id = setInterval(() => {
@@ -48,16 +59,36 @@ export default function Home() {
           <div className="hero-heading">
             <span className="eyebrow">Available Nationwide</span>
             <h1 className="hero-title">
-              <span key={wordIndex} className="rotate-word">{ROTATING_PRODUCTS[wordIndex]}</span>
+              <span key={wordIndex} className="rotate-word">{current.word}</span>
               <br />
               <span className="accent">SALES</span>
             </h1>
           </div>
           <div className="hero-visual">
-            <img src={heroCamera} alt="Canon mirrorless camera with 28-70mm lens" />
+            <div className="glass-holder">
+              <div className="glass-holder-inner">
+                {current.photo ? (
+                  <img
+                    key="photo"
+                    src={heroCamera}
+                    alt="Canon mirrorless camera with 24-105mm lens"
+                    className="glass-photo"
+                  />
+                ) : (
+                  <div key={current.word} className="glass-icon-stage">
+                    <current.Icon size={108} strokeWidth={1.1} />
+                  </div>
+                )}
+              </div>
+              <div className="glass-dots">
+                {ROTATING_PRODUCTS.map((p, i) => (
+                  <span key={p.word} className={i === wordIndex ? 'dot dot-active' : 'dot'} />
+                ))}
+              </div>
+            </div>
             <div className="hero-readout">
-              F/2.0 &nbsp;·&nbsp; 1/8000 &nbsp;·&nbsp; ISO 400
-              <div>NEW ARRIVAL — IN STOCK NOW</div>
+              {current.readout}
+              <div>{current.tag}</div>
             </div>
           </div>
           <div className="hero-rest">

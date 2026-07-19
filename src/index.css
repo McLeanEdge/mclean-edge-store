@@ -324,10 +324,70 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
 
 .hero-visual{ position:relative; }
-.hero-visual img{
+
+/* ---- Glass holder: frosted-glass frame around the rotating
+   product visual, synced to the headline word above it. ---- */
+.glass-holder{
+  position:relative;
   border-radius:var(--radius-l);
-  filter:drop-shadow(0 30px 60px rgba(0,0,0,0.6));
+  padding:14px;
+  background:linear-gradient(155deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.14);
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 0 40px rgba(255,255,255,0.03);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  overflow:hidden;
 }
+.glass-holder::before{
+  /* soft moving sheen for the "glass" feel */
+  content:'';
+  position:absolute; inset:-40% -40% auto auto;
+  width:70%; height:70%;
+  background:radial-gradient(circle, rgba(247,148,29,0.20), transparent 70%);
+  pointer-events:none;
+}
+.glass-holder-inner{
+  position:relative;
+  border-radius:calc(var(--radius-l) - 8px);
+  overflow:hidden;
+  background:rgba(0,0,0,0.25);
+  display:flex; align-items:center; justify-content:center;
+  min-height:280px;
+}
+.glass-photo{
+  width:100%; height:auto; display:block;
+  border-radius:calc(var(--radius-l) - 8px);
+  animation:glassFade .5s ease;
+}
+.glass-icon-stage{
+  width:100%; min-height:280px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--orange);
+  filter:drop-shadow(0 0 26px rgba(247,148,29,0.35));
+  animation:glassFade .45s ease;
+}
+@keyframes glassFade{
+  from{ opacity:0; transform:scale(0.94); }
+  to{ opacity:1; transform:scale(1); }
+}
+.glass-dots{
+  position:relative;
+  display:flex; justify-content:center; gap:8px;
+  margin-top:14px;
+}
+.glass-dots .dot{
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(255,255,255,0.22);
+  transition:background .3s ease, transform .3s ease;
+}
+.glass-dots .dot-active{
+  background:var(--orange);
+  transform:scale(1.3);
+}
+
 .hero-readout{
   position:absolute; left:-10px; bottom:26px;
   background:rgba(10,9,8,0.85);
