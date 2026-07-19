@@ -26,16 +26,16 @@ const CATEGORIES = [
   ['Microphones', IconMic],
 ]
 
-/* Each rotating headline word carries its own real background photo —
-   the hero swaps the photo to match whichever word is showing. */
+/* Each rotating headline word carries its own real product photo —
+   the hero visual swaps the photo to match whichever word is showing. */
 const ROTATING_PRODUCTS = [
-  { word: 'CAMERA', image: heroCamera, tag: 'NEW ARRIVAL — IN STOCK NOW' },
-  { word: 'LENS', image: heroCamera, tag: 'BEST SELLER — RF 24–105MM' },
-  { word: 'DRONE', image: 'https://images.unsplash.com/photo-1574220739173-975b13d0279a?w=1800&q=80&auto=format&fit=crop', tag: 'IN STOCK — READY TO FLY' },
-  { word: 'GIMBAL', image: 'https://images.unsplash.com/photo-1757877259265-99ab3e3193bf?w=1800&q=80&auto=format&fit=crop', tag: 'SMOOTH TRACKING — 12H BATTERY' },
-  { word: 'TRIPOD', image: 'https://images.unsplash.com/photo-1705107958681-c76fec2dc5b4?w=1800&q=80&auto=format&fit=crop', tag: 'PRO SUPPORT — FIELD READY' },
-  { word: 'SD CARD', image: 'https://images.unsplash.com/photo-1760376208569-e1b82e1ae494?w=1800&q=80&auto=format&fit=crop', tag: 'HIGH SPEED — FREE WITH CAMERA' },
-  { word: 'MICROPHONE', image: 'https://images.unsplash.com/photo-1558811916-51c8d56d29c6?w=1800&q=80&auto=format&fit=crop', tag: 'STUDIO GRADE — LOW NOISE' },
+  { word: 'CAMERA', readout: 'F/2.0 · 1/8000 · ISO 400', tag: 'NEW ARRIVAL — IN STOCK NOW', photo: heroCamera },
+  { word: 'LENS', readout: '24–105mm · f/4L IS', tag: 'BEST SELLER — RF MOUNT', photo: heroCamera },
+  { word: 'DRONE', readout: '4K/60 · 3-AXIS GIMBAL', tag: 'IN STOCK — READY TO FLY', photo: 'https://images.unsplash.com/photo-1574220739173-975b13d0279a?w=1200&q=80&auto=format&fit=crop' },
+  { word: 'GIMBAL', readout: 'PAYLOAD 3KG · WIRELESS', tag: 'SMOOTH TRACKING — 12H BATTERY', photo: 'https://images.unsplash.com/photo-1757877259265-99ab3e3193bf?w=1200&q=80&auto=format&fit=crop' },
+  { word: 'TRIPOD', readout: 'CARBON FIBER · 1.6KG', tag: 'PRO SUPPORT — FIELD READY', photo: 'https://images.unsplash.com/photo-1705107958681-c76fec2dc5b4?w=1200&q=80&auto=format&fit=crop' },
+  { word: 'SD CARD', readout: '256GB · UHS-II · 300MB/S', tag: 'HIGH SPEED — FREE WITH CAMERA', photo: 'https://images.unsplash.com/photo-1760376208569-e1b82e1ae494?w=1200&q=80&auto=format&fit=crop' },
+  { word: 'MICROPHONE', readout: 'SHOTGUN · -32DB · XLR', tag: 'STUDIO GRADE — LOW NOISE', photo: 'https://images.unsplash.com/photo-1558811916-51c8d56d29c6?w=1200&q=80&auto=format&fit=crop' },
 ]
 
 export default function Home() {
@@ -54,38 +54,46 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="hero-fb">
-        <div className="hero-fb-frame">
-          <div className="hero-split-left">
+      <section className="hero">
+        <div className="wrap hero-grid">
+          <div className="hero-heading">
             <span className="eyebrow">Available Nationwide</span>
-            <h1 className="hero-title-split">
+            <h1 className="hero-title">
               <span key={wordIndex} className="rotate-word">{current.word}</span>
               <br />
               <span className="accent">SALES</span>
             </h1>
-            <p className="hero-sub-split">
+          </div>
+          <div className="hero-visual">
+            <div className="glass-holder">
+              <div className="glass-holder-inner">
+                <img
+                  key={wordIndex}
+                  src={current.photo}
+                  alt={`${current.word.toLowerCase()} in use`}
+                  className="glass-photo"
+                />
+              </div>
+              <div className="glass-dots">
+                {ROTATING_PRODUCTS.map((p, i) => (
+                  <span key={p.word} className={i === wordIndex ? 'dot dot-active' : 'dot'} />
+                ))}
+              </div>
+            </div>
+            <div className="hero-readout">
+              {current.readout}
+              <div>{current.tag}</div>
+            </div>
+          </div>
+          <div className="hero-rest">
+            <p className="hero-sub">
               Professional cameras, lenses and film gear at affordable prices — shop our full
               inventory, or list your own equipment and sell straight to other creators.
             </p>
-            <div className="hero-actions-split">
-              <Link to="/projects" className="btn btn-primary">APP</Link>
-              <Link to="/sell" className="btn btn-primary">Sell Your Gear</Link>
+            <div className="hero-actions">
+              <Link to="/projects" className="btn btn-primary">APPS</Link>
+              <Link to="/sell" className="btn btn-ghost">Sell Your Gear</Link>
             </div>
-            <div className="hero-fb-tag">{current.tag}</div>
-            <div className="glass-dots glass-dots-left">
-              {ROTATING_PRODUCTS.map((p, i) => (
-                <span key={p.word} className={i === wordIndex ? 'dot dot-active' : 'dot'} />
-              ))}
-            </div>
-          </div>
-          <div className="hero-split-right">
-            <img
-              key={wordIndex}
-              src={current.image}
-              alt={`${current.word.toLowerCase()} in use`}
-              className="hero-split-img"
-            />
-            <div className="hero-split-scrim" />
           </div>
         </div>
       </section>
